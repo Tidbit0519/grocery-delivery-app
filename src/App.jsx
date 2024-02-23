@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import HomePage from "./pages/HomePage"
+import OrderPage from "./pages/OrderPage"
+import { SpeedDial, SpeedDialAction } from "@mui/material"
+import MenuIcon from "@mui/icons-material/Menu"
+import HomeIcon from "@mui/icons-material/Home"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate()
+
+  const handleNavigation = (path) => {
+    navigate(path)
+  }
+
+  const actions = [
+    { icon: <HomeIcon />, name: "Home", action: () => handleNavigation("/") },
+    {
+      icon: <ShoppingCartIcon />,
+      name: "Order",
+      action: () => handleNavigation("/order"),
+    },
+  ]
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <SpeedDial
+        ariaLabel="Navigation Speed Dial"
+        direction="down"
+        sx={{ position: "absolute", top: 16, right: 16 }}
+        icon={<MenuIcon />}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            tooltipOpen
+            onClick={action.action}
+          />
+        ))}
+      </SpeedDial>
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+        <Route
+          path="/order"
+          element={<OrderPage />}
+        />
+      </Routes>
+    </div>
   )
 }
 
