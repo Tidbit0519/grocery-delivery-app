@@ -4,18 +4,17 @@ import { Box, Typography, Button, Container } from "@mui/material"
 import BeachAccessIcon from "@mui/icons-material/BeachAccess"
 import HeroBg from "../assets/herobg.jpeg"
 
-const HeroSection = () => {
+const Hero = () => {
   return (
     <Box
       sx={{
         backgroundImage: `url(${HeroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        height: "100vh",
+        backgroundRepeat: "no-repeat",
+        height: "95vh",
         width: "100vw",
         color: "#fff",
-        py: 8,
       }}
     >
       <Container
@@ -49,7 +48,10 @@ const HeroSection = () => {
         >
           Get your groceries delivered fast & fresh
         </Typography>
-        <Link to="/order" style={{ textDecoration: "none" }}>
+        <Link
+          to="/order"
+          style={{ textDecoration: "none" }}
+        >
           <Button
             variant="contained"
             color="primary"
@@ -57,12 +59,15 @@ const HeroSection = () => {
             sx={{
               backgroundColor: "#ffafcc",
               "&:hover": { backgroundColor: "#f48fb1" },
-            }} // Example colors, adjust as needed
+            }}
           >
             Start Your Order
           </Button>
         </Link>
-        <Link to="/status" style={{ textDecoration: "none" }}>
+        <Link
+          to="/status"
+          style={{ textDecoration: "none" }}
+        >
           <Button
             variant="outlined"
             color="primary"
@@ -70,7 +75,8 @@ const HeroSection = () => {
               borderColor: "#ffafcc",
               color: "#ffafcc",
               "&:hover": { borderColor: "#f48fb1", color: "#f48fb1" },
-            }} // Example colors, adjust as needed
+              mt: 2,
+            }}
           >
             Check Delivery Status
           </Button>
@@ -80,4 +86,4 @@ const HeroSection = () => {
   )
 }
 
-export default HeroSection
+export default Hero
