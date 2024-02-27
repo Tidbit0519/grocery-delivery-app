@@ -9,7 +9,8 @@ import {
   MenuItem,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
-import HomeIcon from "@mui/icons-material/Home"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import SearchIcon from '@mui/icons-material/Search';
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -17,7 +18,8 @@ function Navbar() {
   const navigate = useNavigate()
 
   const actions = [
-    { icon: <HomeIcon />, name: "Home", to: "/", action: () => handleNavigate("/") },
+    { icon: <ShoppingCartIcon />, name: "Place Order", to: "/checkout" },
+    { icon: <SearchIcon />, name: "Delivery Status", to: "/status"}
   ]
 
   const handleClick = (event) => {
@@ -41,6 +43,7 @@ function Navbar() {
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, ml: { xs: 2, sm: 4 } }}
+            onClick={() => handleNavigate("/")}
           >
             HI Delivery
           </Typography>
@@ -72,7 +75,7 @@ function Navbar() {
             open={open}
             onClose={handleClose}
             sx={{
-              display: { xs: "block", md: "none" },
+              display: "block",
             }}
           >
             {actions.map((action) => (

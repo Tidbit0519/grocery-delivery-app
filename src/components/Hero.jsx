@@ -7,15 +7,15 @@ import HeroBg from "../assets/herobg.jpeg"
 const Hero = () => {
   return (
     <Box
-      sx={{
-        backgroundImage: `url(${HeroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "95vh",
-        width: "100vw",
-        color: "#fff",
-      }}
+      // sx={{
+      //   backgroundImage: `url(${HeroBg})`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   backgroundRepeat: "no-repeat",
+      //   height: "95vh",
+      //   width: "100vw",
+      //   color: "#fff",
+      // }}
     >
       <Container
         maxWidth="sm"
@@ -49,7 +49,7 @@ const Hero = () => {
           Get your groceries delivered fast & fresh
         </Typography>
         <Link
-          to="/order"
+          to="/checkout"
           style={{ textDecoration: "none" }}
         >
           <Button
@@ -57,8 +57,7 @@ const Hero = () => {
             color="primary"
             startIcon={<BeachAccessIcon />}
             sx={{
-              backgroundColor: "#ffafcc",
-              "&:hover": { backgroundColor: "#f48fb1" },
+              width: "15rem",
             }}
           >
             Start Your Order
@@ -72,10 +71,8 @@ const Hero = () => {
             variant="outlined"
             color="primary"
             sx={{
-              borderColor: "#ffafcc",
-              color: "#ffafcc",
-              "&:hover": { borderColor: "#f48fb1", color: "#f48fb1" },
               mt: 2,
+              width: "15rem",
             }}
           >
             Check Delivery Status

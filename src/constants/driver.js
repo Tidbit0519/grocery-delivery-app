@@ -1,0 +1,82 @@
+const drivers = [
+    {
+        id: 1,
+        name: 'John Doe',
+        phone: '(123) 456-7890',
+        vehicle: 'Toyota Corolla (White)',
+        licensePlate: 'ABC1234',
+        availability: '6',
+    },
+    {
+        id: 2,
+        name: 'Jane Smith',
+        phone: '(234) 567-8901',
+        vehicle: 'Honda Civic (Black)',
+        licensePlate: 'DEF5678',
+        availability: '0',
+    },
+    {
+        id: 3,
+        name: 'James Johnson',
+        phone: '(345) 678-9012',
+        vehicle: 'Ford Focus (Red)',
+        licensePlate: 'GHI9101',
+        availability: '1',
+    },
+    {
+        id: 4,
+        name: 'Jill Jackson',
+        phone: '(456) 789-0123',
+        vehicle: 'Chevy Malibu (Silver)',
+        licensePlate: 'JKL1121',
+        availability: '2',
+    },
+    {
+        id: 5,
+        name: 'Jack Jameson',
+        phone: '(567) 890-1234',
+        vehicle: 'Nissan Altima (Blue)',
+        licensePlate: 'MNO1234',
+        availability: '3',
+    },
+    {
+        id: 6,
+        name: 'Jenny Johnson',
+        phone: '(678) 901-2345',
+        vehicle: 'Kia Optima (Green)',
+        licensePlate: 'PQR5678',
+        availability: '4',
+    },
+    {
+        id: 7,
+        name: 'Jasmine Jones',
+        phone: '(789) 012-3456',
+        vehicle: 'Hyundai Elantra (Purple)',
+        licensePlate: 'STU9101',
+        availability: '5',
+    },
+    {
+        id: 8,
+        name: 'Jasper Joplin',
+        phone: '(890) 123-4567',
+        vehicle: 'Subaru Impreza (Orange)',
+        licensePlate: 'VWX1121',
+        availability: '6',
+    },
+    {
+        id: 9,
+        name: 'Jared Jorgensen',
+        phone: '(901) 234-5678',
+        vehicle: 'Mazda 3 (Yellow)',
+        licensePlate: 'YZA1234',
+        availability: '0',
+    },
+    {
+        id: 10,
+        name: 'Jocelyn Joplin',
+        phone: '(012) 345-6789',
+        vehicle: 'Volkswagen Jetta (Brown)',
+    }
+]
+
+export default drivers
