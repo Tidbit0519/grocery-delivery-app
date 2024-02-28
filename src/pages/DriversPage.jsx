@@ -9,6 +9,8 @@ import Card from "@mui/material/Card"
 import CardActionArea from "@mui/material/CardActionArea"
 import CardContent from "@mui/material/CardContent"
 import dayjs from "dayjs"
+import { useDispatch } from "react-redux"
+import { updateDriverSelection } from "../actions"
 
 import drivers from "../constants/driver"
 
@@ -20,9 +22,12 @@ function DriversPage({ onDriverSelect }) {
   const [selectedDay, setSelectedDay] = useState(today.day().toString())
   const [selectedDriverId, setSelectedDriverId] = useState(null)
 
-  const handleSelectDriver = (id) => {
-    setSelectedDriverId(id)
-    onDriverSelect(id) // Notify the parent component about the selection
+  const dispatch = useDispatch()
+  
+  const handleSelectDriver = (driver) => {
+    dispatch(updateDriverSelection(driver))
+    setSelectedDriverId(driver)
+    onDriverSelect(driver) // Notify the parent component about the selection
   }
 
   return (
@@ -60,7 +65,7 @@ function DriversPage({ onDriverSelect }) {
               vehicle={driver.vehicle}
               licensePlate={driver.licensePlate}
               selected={selectedDriverId === driver.id}
-              onClick={() => handleSelectDriver(driver.id)}
+              onClick={() => handleSelectDriver(driver)}
             />
           ))}
       </Container>

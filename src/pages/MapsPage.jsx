@@ -77,7 +77,13 @@ export default function GoogleMaps({ onMapSelect }) {
         }
 
         if (results) {
-          newOptions = [...newOptions, ...results]
+          // Custom filtering logic
+          const filteredResults = results.filter((result) =>
+            ["Walmart", "Target", "Safeway"].some((brand) =>
+              result.description.includes(brand)
+            )
+          )
+          newOptions = [...newOptions, ...filteredResults]
         }
 
         setOptions(newOptions)

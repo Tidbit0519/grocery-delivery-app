@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 import { Box, Typography, Button, Container } from "@mui/material"
 import BeachAccessIcon from "@mui/icons-material/BeachAccess"
-import HeroBg from "../assets/herobg.jpeg"
+// import HeroBg from "../assets/herobg.jpeg"
 
 const Hero = () => {
   return (

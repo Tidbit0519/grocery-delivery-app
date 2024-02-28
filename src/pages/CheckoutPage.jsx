@@ -20,12 +20,6 @@ const steps = [
   "Review your order",
 ]
 
-const orderDetails = {
-  dateAndDriver: "June 15, 2024 - John Doe",
-  location: "123 Main St, Anytown, AN",
-  orderInfo: "Order #12345",
-}
-
 export default function CheckoutPage() {
   const [activeStep, setActiveStep] = useState(0)
   const [stepCompleted, setStepCompleted] = useState(steps.map(() => false))
@@ -66,7 +60,7 @@ export default function CheckoutPage() {
           />
         )
       case 3:
-        return <ReviewOrderPage orderDetails={orderDetails} />
+        return <ReviewOrderPage />
 
       default:
         throw new Error("Unknown step")
@@ -94,10 +88,9 @@ export default function CheckoutPage() {
   }
 
   return (
-    <Box sx={{ width: "100vw" }}>
       <Paper
         variant="elevation"
-        sx={{ my: { xs: 0, sm: 6 }, mx: { xs: 0, sm: 24 }, py: 2 }}
+        sx={{ my: { xs: 0, sm: 6 }, mx: { xs: 0, sm: 56 }, py: 2 }}
       >
         <Typography
           variant="h4"
@@ -115,7 +108,7 @@ export default function CheckoutPage() {
               <StepLabel
                 optional={
                   index === 3 ? (
-                    <Typography variant="caption">Last step</Typography>
+                    <Typography variant="body2">Last step</Typography>
                   ) : null
                 }
               >
@@ -174,6 +167,5 @@ export default function CheckoutPage() {
           </Paper>
         )}
       </Paper>
-    </Box>
   )
 }
