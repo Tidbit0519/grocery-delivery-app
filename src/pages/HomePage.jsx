@@ -1,10 +1,13 @@
 import Hero from "../components/Hero"
+import AboutUs from "../components/AboutUs"
+import { Box } from "@mui/material"
 
 function HomePage() {
   return (
-    <div>
+    <Box>
       <Hero />
-    </div>
+      <AboutUs />
+    </Box>
   )
 }
 

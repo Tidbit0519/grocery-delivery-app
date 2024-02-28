@@ -10,7 +10,7 @@ import CardActionArea from "@mui/material/CardActionArea"
 import CardContent from "@mui/material/CardContent"
 import dayjs from "dayjs"
 import { useDispatch } from "react-redux"
-import { updateDriverSelection } from "../actions"
+import { updateDriverSelection } from "../context/actions"
 
 import drivers from "../constants/driver"
 
