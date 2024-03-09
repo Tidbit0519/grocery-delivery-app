@@ -1,91 +1,75 @@
-/* eslint-disable react/prop-types */
-import { useState, useEffect } from "react"
-import { Box, TextField } from "@mui/material"
+import * as React from "react"
+import { FormControl, useFormControlContext } from "@mui/base/FormControl"
+import { Input, inputClasses } from "@mui/base/Input"
+import { styled } from "@mui/system"
+import clsx from "clsx"
 
-function PlaceOrderForm({
-  triggerSubmit,
-  onSubmissionHandled,
-  onFormComplete,
-}) {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    orderNumber: "",
-  })
-
-  useEffect(() => {
-    if (triggerSubmit) {
-      // Perform form submission logic here
-      console.log("Form is being submitted")
-
-      // Call this after form submission logic is executed
-      onSubmissionHandled()
-    }
-  }, [triggerSubmit, onSubmissionHandled])
-
-  useEffect(() => {
-    onFormComplete(Object.values(formData).every((val) => val !== ""))
-  }, [formData, onFormComplete])
-
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    setFormData({
-      ...formData,
-      [name]: value,
-    })
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(formData)
-  }
-
+export default function BasicFormControl() {
   return (
-    <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "300px" },
-      }}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
+    <FormControl
+      defaultValue=""
+      required
     >
-      <div>
-        <TextField
-          required
-          id="firstName"
-          name="firstName"
-          label="First Name"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          id="lastName"
-          name="lastName"
-          label="Last Name"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          id="phone"
-          name="phone"
-          label="Phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-        <TextField
-          id="orderNumber"
-          name="orderNumber"
-          label="Order Number (if any)"
-          value={formData.orderNumber}
-          onChange={handleChange}
-        />
-      </div>
-    </Box>
+      <Label>Name</Label>
+      <StyledInput placeholder="Write your name here" />
+      <HelperText />
+    </FormControl>
   )
 }
 
-export default PlaceOrderForm
+const StyledInput = styled(Input)(
+
+)
+
+const Label = styled(({ children, className }) => {
+  const formControlContext = useFormControlContext()
+  const [dirty, setDirty] = React.useState(false)
+
+  React.useEffect(() => {
+    if (formControlContext?.filled) {
+      setDirty(true)
+    }
+  }, [formControlContext])
+
+  if (formControlContext === undefined) {
+    return <p>{children}</p>
+  }
+
+  const { error, required, filled } = formControlContext
+  const showRequiredError = dirty && required && !filled
+
+  return (
+    <p className={clsx(className, error || showRequiredError ? "invalid" : "")}>
+      {children}
+      {required ? " *" : ""}
+    </p>
+  )
+})`
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+
+  &.invalid {
+    color: red;
+  }
+`
+
+const HelperText = styled((props) => {
+  const formControlContext = useFormControlContext()
+  const [dirty, setDirty] = React.useState(false)
+
+  React.useEffect(() => {
+    if (formControlContext?.filled) {
+      setDirty(true)
+    }
+  }, [formControlContext])
+
+  if (formControlContext === undefined) {
+    return null
+  }
+
+  const { required, filled } = formControlContext
+  const showRequiredError = dirty && required && !filled
+
+  return showRequiredError ? <p {...props}>This field is required.</p> : null
+})

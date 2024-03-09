@@ -18,7 +18,7 @@ function Navbar() {
   const navigate = useNavigate()
 
   const actions = [
-    { icon: <ShoppingCartIcon />, name: "Place Order", to: "/checkout" },
+    { icon: <ShoppingCartIcon />, name: "Place Order", to: "/order" },
     { icon: <SearchIcon />, name: "Delivery Status", to: "/status"}
   ]
 

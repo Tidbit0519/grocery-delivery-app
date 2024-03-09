@@ -7,37 +7,79 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import { Container } from "@mui/material"
 import PickStore from "../components/PickStore"
-import GoogleMaps from "./MapsPage"
-import PlaceOrderForm from "./PlaceOrderForm"
+import GoogleMap from "../components/GoogleMap"
+import OrderForm from "../components/OrderForm"
+import ReviewOrder from "../components/ReviewOrder"
 import { motion } from "framer-motion"
 import { fadeIn } from "../utils/motion"
 
-const steps = ["Pick a store", "Locate on map", "Fill in order details"]
+const steps = ["Pick a store", "Locate on map", "Fill in order details", "Review order"]
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <PickStore />
-    case 1:
-      return <GoogleMaps />
-    case 2:
-      return <PlaceOrderForm />
+const GOOGLE_MAPS_API_KEY = "AIzaSyDaUKJnGQ2UrJ71_F0fdhfNUP-XqBp5Pq8"
 
-    default:
-      throw new Error("Unknown step")
+function loadScript(src, position, id) {
+  if (!position) {
+    return
+  }
+
+  const script = document.createElement("script")
+  script.setAttribute("async", "")
+  script.setAttribute("id", id)
+  script.src = src
+  position.appendChild(script)
+}
+
+if (typeof window !== "undefined") {
+  if (!document.querySelector("#google-maps")) {
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`,
+      document.querySelector("head"),
+      "google-maps"
+    )
   }
 }
 
 export default function OrderPage() {
   const [activeStep, setActiveStep] = useState(0)
-  const [completed, setCompleted] = useState({})
+  const [stepCompleted, setStepCompleted] = useState(steps.map(() => false))
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <PickStore
+            handleStepComplete={(complete) => handleStepComplete(0, complete)}
+          />
+        )
+      case 1:
+        return (
+          <GoogleMap
+            handleStepComplete={(complete) => handleStepComplete(1, complete)}
+          />
+        )
+      case 2:
+        return (
+          <OrderForm
+            handleStepComplete={(complete) => handleStepComplete(2, complete)}
+            handleNext={handleNext}
+          />
+        )
+      case 3:
+        return (
+          <ReviewOrder />
+        )
+
+      default:
+        throw new Error("Unknown step")
+    }
+  }
 
   const totalSteps = () => {
     return steps.length
   }
 
   const completedSteps = () => {
-    return Object.keys(completed).length
+    return stepCompleted.filter((val) => val).length // Count how many steps are true
   }
 
   const isLastStep = () => {
@@ -51,7 +93,7 @@ export default function OrderPage() {
   const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
-        ? steps.findIndex((step, i) => !(i in completed))
+        ? steps.findIndex((step, i) => !(i in stepCompleted))
         : activeStep + 1
     setActiveStep(newActiveStep)
   }
@@ -64,16 +106,15 @@ export default function OrderPage() {
     setActiveStep(step)
   }
 
-  const handleComplete = () => {
-    const newCompleted = completed
-    newCompleted[activeStep] = true
-    setCompleted(newCompleted)
-    handleNext()
+  const handleStepComplete = (stepIndex, completed) => {
+    const newStepCompleted = [...stepCompleted]
+    newStepCompleted[stepIndex] = completed
+    setStepCompleted(newStepCompleted)
   }
 
   const handleReset = () => {
     setActiveStep(0)
-    setCompleted({})
+    setStepCompleted({})
   }
 
   return (
@@ -85,14 +126,14 @@ export default function OrderPage() {
       variants={fadeIn("up", "tween", 0.2, 1)}
     >
       <Stepper
-        Linear
+        linear="true"
         activeStep={activeStep}
         alternativeLabel
       >
         {steps.map((label, index) => (
           <Step
             key={label}
-            completed={completed[index]}
+            completed={stepCompleted[index]}
           >
             <StepButton
               color="inherit"
@@ -129,25 +170,13 @@ export default function OrderPage() {
               <Box sx={{ flex: "1 1 auto" }} />
               <Button
                 onClick={handleNext}
-                sx={{ mr: 1 }}
+                sx={{ mr: 1, display: activeStep === 2 ? "none" : "block"}}
+                disabled={
+                  !stepCompleted[activeStep]
+                }
               >
                 Next
               </Button>
-              {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography
-                    variant="caption"
-                    sx={{ display: "inline-block" }}
-                  >
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? "Finish"
-                      : "Complete Step"}
-                  </Button>
-                ))}
             </Box>
           </>
         )}

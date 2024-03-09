@@ -1,5 +1,7 @@
-import { useState } from "react"
+/* eslint-disable react/prop-types */
 import { Container, Grid, Card, CardMedia, CardActionArea } from "@mui/material"
+import { useDispatch, useSelector } from "react-redux"
+import { updateStoreSelection } from "../context/actions"
 
 import Walmart from "../assets/walmart.png"
 import Target from "../assets/target.png"
@@ -25,8 +27,14 @@ const stores = [
   },
 ]
 
-export default function PickStore() {
-  const [selectedStore, setSelectedStore] = useState(null)
+export default function PickStore({ handleStepComplete }) {
+  const dispatch = useDispatch()
+  const storeSelection = useSelector((state) => state.storeSelection)
+
+  const handleUpdateStoreSelection = (store) => {
+    dispatch(updateStoreSelection(store))
+    handleStepComplete(true) // Notify the parent component about the selection
+  }
 
   return (
     <Container>
@@ -43,14 +51,16 @@ export default function PickStore() {
             <Card
               sx={{
                 border:
-                  selectedStore === store.name ? "2px solid blue" : "none", // Conditional border styling
+                  storeSelection.name === store.name ? "2px solid blue" : "none", // Conditional border styling
                 "&:hover": {
                   cursor: "pointer",
                   opacity: 0.9,
                 },
               }}
             >
-              <CardActionArea onClick={() => setSelectedStore(store.name)}>
+              <CardActionArea
+                onClick={() => handleUpdateStoreSelection(store)}
+              >
                 <CardMedia
                   component="img"
                   image={store.image}
