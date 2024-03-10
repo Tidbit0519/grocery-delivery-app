@@ -78,7 +78,7 @@ const Hero = () => {
                 color: "common.white",
               }}
             >
-              Deliver Now
+              Order Now
             </Button>
           </Link>
         </Grid>
