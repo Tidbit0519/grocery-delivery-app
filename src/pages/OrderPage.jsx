@@ -9,11 +9,11 @@ import { Container } from "@mui/material"
 import PickStore from "../components/PickStore"
 import GoogleMap from "../components/GoogleMap"
 import OrderForm from "../components/OrderForm"
-import ReviewOrder from "../components/ReviewOrder"
+import Checkout from "../components/Checkout"
 import { motion } from "framer-motion"
 import { fadeIn } from "../utils/motion"
 
-const steps = ["Pick a store", "Locate on map", "Fill in order details", "Review order"]
+const steps = ["Pick a store", "Locate on map", "Fill in order details", "Checkout"]
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyDaUKJnGQ2UrJ71_F0fdhfNUP-XqBp5Pq8"
 
@@ -66,7 +66,7 @@ export default function OrderPage() {
         )
       case 3:
         return (
-          <ReviewOrder />
+          <Checkout />
         )
 
       default:
@@ -144,7 +144,15 @@ export default function OrderPage() {
           </Step>
         ))}
       </Stepper>
-      <Container sx={{ width: "50%", py: 8 }}>
+      <Container
+        sx={{
+          width: {
+            xs: "100%",
+            sm: "60%",
+          },
+          py: 8,
+        }}
+      >
         {allStepsCompleted() ? (
           <>
             <Typography sx={{ textAlign: "center" }}>
@@ -170,10 +178,8 @@ export default function OrderPage() {
               <Box sx={{ flex: "1 1 auto" }} />
               <Button
                 onClick={handleNext}
-                sx={{ mr: 1, display: activeStep === 2 ? "none" : "block"}}
-                disabled={
-                  !stepCompleted[activeStep]
-                }
+                sx={{ mr: 1, display: activeStep === 2 || activeStep === steps.length-1 ? "none" : "block" }}
+                disabled={!stepCompleted[activeStep]}
               >
                 Next
               </Button>

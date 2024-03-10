@@ -168,7 +168,7 @@ export default function DeliveryAddress() {
       <Box
         ref={mapRef}
         sx={{
-          height: value ? 100 : 0,
+          height: value ? 300 : 0,
           width: "100%",
           marginTop: 2,
           display: value ? "block" : "none",

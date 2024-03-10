@@ -100,15 +100,16 @@ export default function GoogleMaps({ handleStepComplete }) {
         </Box>
       ) : (
         <Grid
-          container
+            container
+            justifyContent="center"
           spacing={2}
         >
           {locations.map((location, index) => (
             <Grid
               item
               key={index}
-              xs={12}
-              sm={6}
+              xs={6}
+              sm={4}
               md={4}
             >
               <Card

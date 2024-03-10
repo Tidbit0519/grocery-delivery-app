@@ -40,12 +40,14 @@ export default function PickStore({ handleStepComplete }) {
     <Container>
       <Grid
         container
+        justifyContent="center"
         spacing={2}
       >
         {stores.map((store) => (
           <Grid
             item
-            xs={6}
+            xs={8}
+            sm={6}
             key={store.name}
           >
             <Card

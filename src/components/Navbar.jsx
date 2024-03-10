@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import {
   AppBar,
+  Box,
   Toolbar,
   Typography,
   IconButton,
@@ -11,6 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import SearchIcon from '@mui/icons-material/Search';
+import Logo from "../assets/logo.png"
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -39,6 +41,16 @@ function Navbar() {
     <>
       <AppBar position="static">
         <Toolbar>
+          <Box
+            component="img"
+            sx={{
+              maxHeight: { xs: 50, md: 100 },
+              maxWidth: { xs: 50, md: 100 },
+              py: 1,
+            }}
+            alt="The house from the offer."
+            src={Logo}
+          />
           <Typography
             variant="h6"
             component="div"

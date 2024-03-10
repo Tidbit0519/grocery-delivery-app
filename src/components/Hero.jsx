@@ -48,6 +48,7 @@ const Hero = () => {
               mb: 2,
               fontWeight: "bold",
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              color: "common.white",
             }}
           >
             Freshness Delivered to Your Doorstep in Paradise
@@ -57,6 +58,7 @@ const Hero = () => {
             sx={{
               mb: 4,
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              color: "common.white",
             }}
           >
             Get your groceries delivered fast & fresh
