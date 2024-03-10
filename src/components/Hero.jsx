@@ -17,7 +17,7 @@ const Hero = () => {
         backgroundPosition: { xs:"100% 10%", md: "100% 50%" },
         backgroundRepeat: "no-repeat",
         backgroundColor: "#abd3dd",
-        height: { xs: "80vh", sm: "60vh" },
+        height: { xs: "100vh", sm: "60vh" },
         width: "100vw",
       }}
     >
