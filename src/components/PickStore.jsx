@@ -53,16 +53,16 @@ export default function PickStore({ handleStepComplete }) {
             <Card
               sx={{
                 border:
-                  storeSelection.name === store.name ? "2px solid blue" : "none", // Conditional border styling
+                  storeSelection.name === store.name
+                    ? "2px solid #73bae4"
+                    : "none", // Conditional border styling
                 "&:hover": {
                   cursor: "pointer",
                   opacity: 0.9,
                 },
               }}
             >
-              <CardActionArea
-                onClick={() => handleUpdateStoreSelection(store)}
-              >
+              <CardActionArea onClick={() => handleUpdateStoreSelection(store)}>
                 <CardMedia
                   component="img"
                   image={store.image}

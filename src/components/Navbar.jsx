@@ -39,26 +39,46 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        color="transparent"
+        sx={{ boxShadow: 'none' }}
+      >
         <Toolbar>
           <Box
             component="img"
             sx={{
-              maxHeight: { xs: 50, md: 100 },
-              maxWidth: { xs: 50, md: 100 },
+              maxHeight: 50,
+              maxWidth: 50,
               py: 1,
             }}
-            alt="The house from the offer."
+            alt="logo"
             src={Logo}
           />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, ml: { xs: 2, sm: 4 } }}
-            onClick={() => handleNavigate("/")}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
           >
-            HI Delivery
-          </Typography>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ ml: { xs: 1, sm: 2 }, mr: 0.5, color: "#73bae4" }}
+              onClick={() => handleNavigate("/")}
+            >
+              HI
+            </Typography>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ color: "#424141" }}
+              onClick={() => handleNavigate("/")}
+            >
+              DELIVERY
+            </Typography>
+          </Box>
 
           <IconButton
             size="large"
@@ -68,8 +88,9 @@ function Navbar() {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleClick}
+            sx={{ ml: "auto" }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: "#73bae4" }} />
           </IconButton>
 
           <Menu
@@ -94,6 +115,7 @@ function Navbar() {
               <MenuItem
                 key={action.name}
                 onClick={handleClose}
+                sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", mt: 1 }}
               >
                 <Link
                   to={action.to}
@@ -108,6 +130,7 @@ function Navbar() {
                   <Typography
                     textAlign="center"
                     sx={{ ml: 1 }}
+                    color="#424141"
                   >
                     {action.name}
                   </Typography>

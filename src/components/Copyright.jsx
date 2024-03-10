@@ -7,12 +7,8 @@ function Copyright() {
       color="text.secondary"
       align="center"
       sx={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        width: "100%",
-        padding: "10px 0",
+        position: "static",
+        padding: "10px",
       }}
     >
       {"Copyright © "}

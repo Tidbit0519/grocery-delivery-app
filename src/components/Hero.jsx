@@ -14,14 +14,17 @@ const Hero = () => {
         justifyContent: "flex-start",
         backgroundImage: `url(${HeroBg})`,
         backgroundSize: "contain",
-        backgroundPosition: { md: "100% 50%" },
+        backgroundPosition: { xs:"100% 10%", md: "100% 50%" },
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#9cc398",
-        height: "60vh",
+        backgroundColor: "#abd3dd",
+        height: { xs: "80vh", sm: "60vh" },
         width: "100vw",
       }}
     >
-      <Grid container>
+      <Grid
+        container
+        sx={{ pt: { xs: 36, sm: 0 } }}
+      >
         <Grid
           item
           xs={12}
@@ -47,17 +50,17 @@ const Hero = () => {
             sx={{
               mb: 2,
               fontWeight: "bold",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              textShadow: "2px 2px 3px rgba(0, 0, 0, 0.75)",
               color: "common.white",
             }}
           >
-            Freshness Delivered to Your Doorstep in Paradise
+            Freshness Delivered to Your Doorstep
           </Typography>
           <Typography
             variant="h5"
             sx={{
               mb: 4,
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              textShadow: "2px 2px 3px rgba(0, 0, 0, 0.75)",
               color: "common.white",
             }}
           >
@@ -72,6 +75,7 @@ const Hero = () => {
               color="primary"
               sx={{
                 width: "15rem",
+                color: "common.white",
               }}
             >
               Deliver Now

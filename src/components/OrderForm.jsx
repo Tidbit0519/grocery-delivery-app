@@ -137,19 +137,6 @@ function OrderForm({ handleStepComplete, handleNext }) {
         <Divider variant="middle">
           <Typography variant="overline">Delivery Information</Typography>
         </Divider>
-        {/* <TextField
-          label="Pick Up Time"
-          type="datetime-local"
-          variant="outlined"
-          fullWidth
-          InputLabelProps={{
-            shrink: true,
-          }}
-          {...register("pickUpTime", { required: "Pick up time is required" })}
-          error={!!errors.pickUpTime}
-          helperText={errors.pickUpTime ? errors.pickUpTime.message : ""}
-          margin="normal"
-        /> */}
         <DeliveryAddress />
         <TextField
           label="Delivery Instructions"
@@ -166,7 +153,7 @@ function OrderForm({ handleStepComplete, handleNext }) {
           type="submit"
           variant="contained"
           color="primary"
-          sx={{ position: "absolute", top: 10 }}
+          sx={{ position: "absolute", top: 10, color: "common.white" }}
         >
           Submit
         </Button>

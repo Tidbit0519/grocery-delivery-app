@@ -6,6 +6,9 @@ import { Button, Grid, Typography, Box, Divider, List, ListItem, ListItemText } 
 import CheckIcon from "@mui/icons-material/Check"
 import { CardElement } from "@stripe/react-stripe-js"
 
+import { motion } from "framer-motion"
+import { boxVariants } from "../utils/motion"
+
 const products = [
   {
     name: "Delivery Fee",
@@ -92,8 +95,11 @@ export default function Checkout() {
             justifyContent: "center",
             marginBottom: 2,
           }}
+          initial="hidden"
+          animate="visible"
+          component={motion.div}
+          variants={boxVariants}
         >
-          {/* This is a placeholder for your checkmark animation */}
           <Typography
             variant="h5"
             color="common.white"
@@ -111,12 +117,20 @@ export default function Checkout() {
         <Typography
           variant="h6"
           textAlign="center"
+          component={motion.div}
+          initial="hidden"
+          animate="visible"
+          variants={boxVariants}
         >
           We have received your order!
         </Typography>
         <Typography
           variant="body2"
           textAlign="center"
+          component={motion.div}
+          initial="hidden"
+          animate="visible"
+          variants={boxVariants}
         >
           You will be redirected to the home page in {timer} seconds
         </Typography>
@@ -247,7 +261,7 @@ export default function Checkout() {
           type="submit"
           variant="contained"
           color="primary"
-          sx={{ mt: 3, display: "block", width: "100%" }}
+          sx={{ mt: 3, display: "block", width: "100%", color: "common.white" }}
         >
           Submit Payment
         </Button>

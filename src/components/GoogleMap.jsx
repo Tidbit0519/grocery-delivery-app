@@ -100,8 +100,8 @@ export default function GoogleMaps({ handleStepComplete }) {
         </Box>
       ) : (
         <Grid
-            container
-            justifyContent="center"
+          container
+          justifyContent="center"
           spacing={2}
         >
           {locations.map((location, index) => (
@@ -119,7 +119,7 @@ export default function GoogleMaps({ handleStepComplete }) {
                   height: 110,
                   border:
                     locationSelection.place_id === location.place_id
-                      ? "2px solid blue"
+                      ? "2px solid #73bae4"
                       : "none",
                   "&:hover": {
                     cursor: "pointer",

@@ -1,12 +1,19 @@
-export default function AboutUs() {
+import SectionWrapper from "./SectionWrapper"
+import { Typography } from "@mui/material"
+
+function AboutUs() {
   return (
-    <div>
-      <h1>About Us</h1>
-      <p>
-        We are a delivery service that provides a platform for customers to
-        order and track delivery of their packages. We are committed to
-        providing a reliable and efficient service to our customers.
-      </p>
-    </div>
+    <>
+      <Typography
+        variant="h5"
+        component="div"
+        sx={{ color: "#424141" }}
+        textAlign={{ xs: "center", md: "left" }}
+      >
+        ABOUT US
+      </Typography>
+    </>
   )
 }
+
+export default SectionWrapper(AboutUs)
