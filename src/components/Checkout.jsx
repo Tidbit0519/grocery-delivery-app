@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"
 import { Button, Grid, Typography, Box, Divider, List, ListItem, ListItemText } from "@mui/material"
 import CheckIcon from "@mui/icons-material/Check"
 import { CardElement } from "@stripe/react-stripe-js"
+import { v4 as uuidv4 } from "uuid"
+import emailjs from "@emailjs/browser"
 
 import { motion } from "framer-motion"
 import { boxVariants } from "../utils/motion"
@@ -60,9 +62,40 @@ export default function Checkout() {
 
   useEffect(() => {
     if (showConfirmation) {
-      const interval = setInterval(() => {
-        setTimer((prevCount) => prevCount - 1)
-      }, 1000)
+      const trackingNum = uuidv4()
+      let interval = 0
+      emailjs
+        .send(
+          "service_hi-delivery2024",
+          "template_vj5lbiq",
+          {
+            from_name: "HI Delivery",
+            to_name: "Jason Ban Tze Tan",
+            from_email: "eyd.hi.delivery@gmail.com",
+            to_email: "jtbt1218@gmail.com",
+            recipient: "jtbt1218@gmail.com",
+            cc: "jtbt1218@gmail.com",
+            message:
+              "We received your order, your tracking number is " + trackingNum,
+          },
+          {
+            publicKey: "X3qgEA_Xj7oM703NV",
+            privateKey: "upw0ekt3zzf1tpNjrYpRu",
+          }
+        )
+        .then(
+          () => {
+            console.log("Email sent successfully!")
+            interval = setInterval(() => {
+              setTimer((prevCount) => prevCount - 1)
+            }, 1000)
+          },
+          (error) => {
+            console.log(error)
+            alert("Sorry, something went wrong. Please try again later.")
+          }
+        )
+      
       return () => clearInterval(interval)
     }
   }, [showConfirmation])
