@@ -176,14 +176,17 @@ export default function OrderPage() {
                 Back
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Button
+                <Button
+                  variant="contained"
                 onClick={handleNext}
+                color="primary"
                 sx={{
                   mr: 1,
                   display:
                     activeStep === 2 || activeStep === steps.length - 1
                       ? "none"
                       : "block",
+                  color: "common.white",
                 }}
                 disabled={!stepCompleted[activeStep]}
               >
