@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { Button, Grid, Typography, Box, Divider, List, ListItem, ListItemText } from "@mui/material"
 import CheckIcon from "@mui/icons-material/Check"
 import { CardElement } from "@stripe/react-stripe-js"
+import { v4 as uuidv4 } from "uuid"
 
 import { motion } from "framer-motion"
 import { boxVariants } from "../utils/motion"
@@ -43,29 +44,32 @@ export default function Checkout() {
   const pickupTime = useSelector((state) => state.pickupTime)
   const deliveryAddress = useSelector((state) => state.deliveryAddress)
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    setTimeout(() => {
-      setShowConfirmation(true)
-      setTimeout(() => {
-        navigate("/")
-      }, 5000)
-    }, 1000)
-  }
-
+  const [trackingNumber, setTrackingNumber] = useState()
   const [showConfirmation, setShowConfirmation] = useState(false)
   const navigate = useNavigate()
 
-  const [timer, setTimer] = useState(5)
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    setTrackingNumber(uuidv4())
+    setTimeout(() => {
+      setShowConfirmation(true)
+      // setTimeout(() => {
+      //   navigate("/")
+      // }, 5000)
+    }, 1000)
+  }
 
-  useEffect(() => {
-    if (showConfirmation) {
-      const interval = setInterval(() => {
-        setTimer((prevCount) => prevCount - 1)
-      }, 1000)
-      return () => clearInterval(interval)
-    }
-  }, [showConfirmation])
+
+  // const [timer, setTimer] = useState(5)
+
+  // useEffect(() => {
+  //   if (showConfirmation) {
+  //     const interval = setInterval(() => {
+  //       setTimer((prevCount) => prevCount - 1)
+  //     }, 1000)
+  //     return () => clearInterval(interval)
+  //   }
+  // }, [showConfirmation])
 
   if (showConfirmation) {
     return (
@@ -132,8 +136,16 @@ export default function Checkout() {
           animate="visible"
           variants={boxVariants}
         >
-          You will be redirected to the home page in {timer} seconds
+          Your order tracking number is {trackingNumber}.
         </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 4, color: "common.white"}}
+          onClick={() => navigate("/")}
+        >
+          Go Back Home
+        </Button>
       </Box>
     )
   }
