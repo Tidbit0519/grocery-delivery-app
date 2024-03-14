@@ -34,7 +34,6 @@ export default function Checkout() {
     firstName,
     lastName,
     phoneNumber,
-    curbsideNumber,
     orderNumber,
     deliveryInstructions,
   } = useSelector((state) => state.orderInfo)
@@ -53,23 +52,23 @@ export default function Checkout() {
     setTrackingNumber(uuidv4())
     setTimeout(() => {
       setShowConfirmation(true)
-      // setTimeout(() => {
-      //   navigate("/")
-      // }, 5000)
+      setTimeout(() => {
+        navigate("/")
+      }, 5000)
     }, 1000)
   }
 
 
-  // const [timer, setTimer] = useState(5)
+  const [timer, setTimer] = useState(5)
 
-  // useEffect(() => {
-  //   if (showConfirmation) {
-  //     const interval = setInterval(() => {
-  //       setTimer((prevCount) => prevCount - 1)
-  //     }, 1000)
-  //     return () => clearInterval(interval)
-  //   }
-  // }, [showConfirmation])
+  useEffect(() => {
+    if (showConfirmation) {
+      const interval = setInterval(() => {
+        setTimer((prevCount) => prevCount - 1)
+      }, 1000)
+      return () => clearInterval(interval)
+    }
+  }, [showConfirmation])
 
   if (showConfirmation) {
     return (
@@ -86,6 +85,8 @@ export default function Checkout() {
           flexDirection: "column",
           alignItems: "center",
           borderRadius: "4px",
+          width: "50%",
+          zIndex: 100,
         }}
       >
         <Box
@@ -136,7 +137,7 @@ export default function Checkout() {
           animate="visible"
           variants={boxVariants}
         >
-          Your order tracking number is {trackingNumber}.
+          You will receive an email confirmation shortly. You will be redirected to the home page in {timer} seconds.
         </Typography>
         <Button
           variant="contained"
@@ -207,7 +208,7 @@ export default function Checkout() {
               textAlign="left"
               gutterBottom
             >
-              Delivery Information
+              Your Contact Information
             </Typography>
             <DeliveryInfoReviewItem value={firstName + " " + lastName} />
             <DeliveryInfoReviewItem value={phoneNumber} />
@@ -245,10 +246,6 @@ export default function Checkout() {
             <OrderInfoReviewItem
               label="Pick-Up Time: "
               value={pickupTime}
-            />
-            <OrderInfoReviewItem
-              label="Curbside # "
-              value={curbsideNumber}
             />
           </Box>
         </Grid>

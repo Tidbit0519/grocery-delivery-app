@@ -104,20 +104,7 @@ function OrderForm({ handleStepComplete, handleNext }) {
         <Divider variant="middle">
           <Typography variant="overline">Pick Up Information</Typography>
         </Divider>
-        <Box sx={{ display: "flex", justifyContent: "space-between", gap: 2 }}>
-          <TextField
-            label="* Curbside Number"
-            variant="outlined"
-            fullWidth
-            {...register("curbsideNumber", {
-              required: "Curbside number is required",
-            })}
-            error={!!errors.curbsideNumber}
-            helperText={
-              errors.curbsideNumber ? errors.curbsideNumber.message : ""
-            }
-            margin="normal"
-          />
+        <Box>
           <TextField
             label="Order Number (if any)"
             variant="outlined"

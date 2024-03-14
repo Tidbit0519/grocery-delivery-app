@@ -37,7 +37,7 @@ export default function PickStore({ handleStepComplete }) {
   }
 
   return (
-    <Container>
+    <Container sx={{ pb: 2 }}>
       <Grid
         container
         justifyContent="center"
