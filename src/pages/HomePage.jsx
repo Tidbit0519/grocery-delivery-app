@@ -1,12 +1,15 @@
 import Hero from "../components/Hero"
 import AboutUs from "../components/AboutUs"
-import { Box } from "@mui/material"
+import ContactUs from "../components/ContactUs"
+import { Box, Divider } from "@mui/material"
 
 function HomePage() {
   return (
     <Box>
       <Hero />
       <AboutUs />
+      <Divider variant="middle" />
+      <ContactUs />
     </Box>
   )
 }
