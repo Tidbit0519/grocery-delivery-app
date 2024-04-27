@@ -1,4 +1,3 @@
-import * as React from "react"
 import PropTypes from "prop-types"
 import { styled } from "@mui/material/styles"
 import Stack from "@mui/material/Stack"
@@ -12,30 +11,7 @@ import VideoLabelIcon from "@mui/icons-material/VideoLabel"
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector"
-
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 10,
-    left: "calc(-50% + 16px)",
-    right: "calc(50% + 16px)",
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    borderColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-    borderTopWidth: 3,
-    borderRadius: 1,
-  },
-}))
+import { Box, Typography } from "@mui/material"
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
   color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
@@ -177,21 +153,46 @@ const steps = ["Order Received", "Driver Assigned", "In Transit", "Delivered"]
 
 export default function CustomizedSteppers() {
   return (
-    <Stack
-      sx={{ width: "100%", height: "75vh", mt: 4}}
-      spacing={4}
-    >
-      <Stepper
-        alternativeLabel
-        activeStep={1}
-        connector={<ColorlibConnector />}
-      >
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </Stack>
-  )
+		<Stack
+			sx={{ width: "100%", height: "75vh", mt: 4 }}
+			spacing={4}
+		>
+			<Stepper
+				alternativeLabel
+				activeStep={1}
+				connector={<ColorlibConnector />}
+			>
+				{steps.map((label) => (
+					<Step key={label}>
+						<StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+					</Step>
+				))}
+			</Stepper>
+
+			<Box
+				sx={{
+					width: "100%",
+					height: "75vh",
+					mt: 4,
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+				}}
+			>
+				<Typography
+					variant="h4"
+					gutterBottom
+					sx={{ textAlign: "center" }}
+				>
+					Coming Soon!
+				</Typography>
+				<Typography
+					variant="body1"
+					sx={{ textAlign: "center" }}
+				>
+					This feature is still under development. Please check back later.
+				</Typography>
+			</Box>
+		</Stack>
+	)
 }

@@ -13,8 +13,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn"
 import { debounce } from "@mui/material/utils"
 import { Skeleton } from "@mui/material"
 
-// Assuming GOOGLE_MAPS_API_KEY is correctly defined
-
 const autocompleteService = { current: null }
 
 export default function GoogleMaps({ handleStepComplete }) {
