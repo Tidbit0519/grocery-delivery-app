@@ -63,4 +63,4 @@ Follow these steps to run the application locally:
 
 ## LICENSE
 
-This project is licensed under the GNU General Public License v3.0. See the [LICENSE](https://github.com/Tidbit0519/hi-delivery/blob/main/LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](https://github.com/Tidbit0519/hi-delivery/blob/master/LICENSE) file for details.
